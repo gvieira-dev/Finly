@@ -26,9 +26,10 @@
 
 ---
 
-## 📂 Estrutura do Projeto
+## 📁 Estrutura do Projeto
+
+```
 FINLY/
-│
 ├── api/
 │   ├── adicionar_transacao.php
 │   ├── excluir_simulacao.php
@@ -44,7 +45,6 @@ FINLY/
 │   ├── img/
 │   │   ├── controle_financeiro.png
 │   │   └── dashboard.png
-│   │
 │   ├── login.css
 │   ├── script.js
 │   └── style.css
@@ -60,10 +60,13 @@ FINLY/
 │   └── index.php
 │
 ├── database/
+│   └── finly.sql
 │
+├── .gitignore
 ├── logout.php
 ├── README.md
 └── teste.php
+```
 
 ---
 
