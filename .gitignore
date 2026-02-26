@@ -1,0 +1,11 @@
+# Configurações do PHP/XAMPP
+config/conexao.php
+vendor/
+node_modules/
+.env
+
+# Arquivos temporários do sistema
+*.log
+*.tmp
+.DS_Store
+Thumbs.db

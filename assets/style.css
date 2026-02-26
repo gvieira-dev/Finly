@@ -1,0 +1,666 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f7f7f8;
+    color: #111827;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* SIDEBAR */
+    
+.sidebar {
+    width: 240px;
+    background-color: #ffffff;
+    padding: 30px 20px;
+    border-right: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.logo span {
+    margin-left: 8px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    padding: 12px 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #6b7280;
+    transition: 0.2s ease;
+}
+
+.sidebar li:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+}
+
+.sidebar li.active {
+    background-color: #eef2ff;
+    color: #6366f1;
+}
+
+
+.sidebar li a {
+    padding: 12px 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #6b7280;
+    transition: 0.2s ease;
+    text-decoration: none;
+    margin-left: -5%;
+}
+
+.sidebar li a:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+}
+
+.sidebar li a.active {
+    background-color: #eef2ff;
+    color: #6366f1;
+}
+
+/* MAIN CONTENT */
+
+.main-content {
+    flex: 1;
+    padding: 60px 80px;
+    overflow: hidden;
+}
+
+.header h1 {
+    margin-top: -2.3%;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.header p {
+    color: #6b7280;
+    margin-bottom: 40px;
+}
+
+/* CARD */
+
+.card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    max-width: 500px;
+}
+
+.card h2 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* FORM */
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #374151;
+}
+
+.form-group input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #6366f1;
+}
+
+/* BUTTON */
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: #6366f1;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #4f46e5;
+}
+
+/* Modal: fundo escuro semi-transparente */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100vh;
+    background-color: rgba(0,0,0,0.2); 
+    backdrop-filter: blur(8px); 
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Conteúdo do modal */
+.modal-content {
+    background-color: #ffffff; 
+    margin: 0;
+    padding: 32px 36px;
+    border-radius: 24px; 
+    width: 500px;
+    max-width: 95%;
+    min-height: 320px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12); 
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    position: relative;
+    animation: slideDown 0.4s ease;
+}
+
+
+/* Animação de entrada do modal */
+@keyframes slideDown {
+    0% {
+        transform: translateY(-40px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Botão de fechar (X) */
+.close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #9ca3af; /* cinza suave */
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.close:hover {
+    color: #111827; /* cinza escuro */
+    transform: rotate(90deg);
+}
+
+/* Texto dentro do modal */
+#modal-text {
+    margin-top: 24px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #374151; /* cinza médio elegante */
+}
+
+/* Estilo para valores destacados */
+#modal-text .valor-mensal {
+    color: #10b981; /* verde moderno, elegante */
+    font-weight: 600;
+}
+
+#modal-text .meta {
+    color: #3b82f6; /* azul calmo */
+    font-weight: 600;
+}
+
+#modal-text .tempo {
+    color: #f97316; /* laranja suave */
+    font-weight: 600;
+}
+
+/* Botão dentro do modal */
+.modal .btn {
+    margin-top: 28px;
+    padding: 12px 28px;
+    background-color: #6366f1; /* roxo suave */
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal .btn:hover {
+    background-color: #4f46e5; /* roxo mais forte */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79,70,229,0.3);
+}
+
+#modal-text p {
+    margin: 6px 0;
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+.modal-grande {
+    width: 80%;         
+    max-width: 1000px;  
+    overflow-y: auto;   
+    border-radius: 12px;
+    background-color: #fff;
+}
+
+.modal-grande h1 {
+    margin-bottom: 1rem;
+}
+
+.modal-grande .sim-card {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Modal histórico */
+#modal-historico {
+    display: none; /* inicial escondido */
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+#modal-historico .modal-content {
+    background-color: #fff;
+    width: 80%;
+    max-width: 1000px;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-sizing: border-box;
+    max-height: 90vh; 
+    overflow-y: auto;
+    margin: 0;
+}
+
+/* Cards do histórico */
+.sim-card {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+}
+
+.sim-card p {
+    margin: 8px 0;
+    font-size: 16px; 
+    text-align: left;
+}
+
+.sim-card strong { color: #3b82f6; }
+.sim-card .valor-mensal { color: #10b981; }
+.sim-card .meta { color: #3b82f6; }
+.sim-card .tempo { color: #f97316; }
+
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #f7f7f8;
+}
+
+/* ===== MODAL FINANCEIRO ===== */
+#modal-financeiro {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100vh;
+    background-color: rgba(0,0,0,0.2); 
+    backdrop-filter: blur(8px); 
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Conteúdo do modal */
+#modal-financeiro .modal-content {
+    background-color: #ffffff; 
+    width: 600px;      /* maior que antes */
+    max-width: 95%;
+    max-height: 90vh;  /* limite de altura */
+    overflow-y: auto;  /* ativa scroll interno */
+    padding: 32px 36px;
+    border-radius: 24px; 
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12); 
+    text-align: center;
+    position: relative;
+    animation: slideDown 0.4s ease;
+}
+
+/* Animação de entrada */
+@keyframes slideDown {
+    0% {
+        transform: translateY(-40px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Título e subtítulo */
+#modal-financeiro h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+#modal-financeiro .subtitle {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+/* SALDO */
+#modal-financeiro .saldo {
+    background-color: #f0fdf4;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#modal-financeiro .saldo h2 {
+    color: #10b981; /* verde positivo */
+    font-weight: 600;
+}
+
+#modal-financeiro #saldo.negativo {
+    color: #ef4444; /* vermelho negativo */
+    font-weight: 600;
+}
+
+/* FORMULARIO */
+#modal-financeiro form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#modal-financeiro input, 
+#modal-financeiro select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+#modal-financeiro input:focus, 
+#modal-financeiro select:focus {
+    outline: none;
+    border-color: #6366f1;
+}
+
+/* BOTÃO ADICIONAR */
+#modal-financeiro button {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: #6366f1;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#modal-financeiro button:hover {
+    background-color: #4f46e5;
+}
+
+/* LISTA DE TRANSAÇÕES */
+#modal-financeiro ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+#modal-financeiro li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background-color: #f9fafb;
+    transition: 0.2s ease;
+}
+
+#modal-financeiro li:hover {
+    background-color: #f3f4f6;
+}
+
+/* Cores por tipo */
+#modal-financeiro li.entrada {
+    color: #10b981;
+    font-weight: 600;
+}
+
+#modal-financeiro li.saida {
+    color: #ef4444;
+    font-weight: 600;
+}
+
+/* BOTÃO FECHAR */
+#modal-financeiro .close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #9ca3af;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+#modal-financeiro .close:hover {
+    color: #111827;
+    transform: rotate(90deg);
+}
+
+#modal-financeiro #btn-limpar {
+    margin-top: 12px;
+    padding: 12px;
+    width: 100%;
+    border-radius: 8px;
+    border: none;
+    background-color: #ef4444;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#modal-financeiro #btn-limpar:hover {
+    background-color: #dc2626;
+}
+
+.btn-logout {
+    width: 100%;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: -5%;
+}
+
+.btn-logout:hover {
+    background: #c0392b;
+}
+
+.username{
+    padding: 15px;
+    font-size: 18px;
+}
+
+/* BARRA DE PROGRESSO */
+
+.barra-progresso {
+    width: 100%;
+    height: 14px;
+    background: #eee;
+    border-radius: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.progresso {
+    height: 100%;
+    background: linear-gradient(90deg, #00c853, #64dd17);
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+/* ===== CARD HISTÓRICO ===== */
+.sim-card {
+    position: relative;
+}
+
+/* ===== BOTÃO FAVORITAR ===== */
+.btn-favoritar {
+    position: absolute;
+    top:21px;
+    right: 45px; /* ajusta se precisar aproximar do X */
+    cursor: pointer;
+    font-size: 20px;
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-favoritar:hover {
+    transform: scale(1.25);
+    opacity: 0.85;
+}
+
+.btn-favoritar.ativa {
+    color: gold;
+}
+
+/* ================= DASHBOARD WRAPPER ================= */
+.dashboard-wrapper {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+/* Form container */
+.form-container {
+    flex: 1;
+    min-width: 280px;
+}
+
+/* Gráfico flutuante ao lado do form */
+.grafico-container {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Canvas ocupa todo o espaço do container */
+.grafico-container canvas {
+    width: 100% !important;
+    height: 500px !important; /* altura maior */
+    display: block;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Opcional: centraliza o gráfico verticalmente */
+.grafico-container {
+    flex: 1.4; /* aumenta a largura relativa ao form */
+    min-width: 300px;
+    margin-top: -2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Se quiser estilizar botões de filtro "Dia" (único agora) */
+.btn-filtro {
+    padding: 6px 12px;
+    background-color: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    margin-bottom: 8px;
+}
+
+.btn-filtro:hover,
+.btn-filtro.ativo {
+    background-color: #4f46e5;
+}
