@@ -1,5 +1,4 @@
 # Configurações do PHP/XAMPP
-config/conexao.php
 vendor/
 node_modules/
 .env
